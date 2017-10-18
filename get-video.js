@@ -3,7 +3,12 @@ captureButton.addEventListener('click', async(event) => {
   try {
     let mediaStream = await navigator.mediaDevices.getUserMedia(
       // 取得したいストリームの条件を指定する
-      {video: true, audio: true}
+      {
+        video: {
+          width: {min: 1280, ideal: 1920},
+          height: {min: 720, ideal: 1080},
+        }
+      }
     );
     // メディアストリームを再生するvideoタグを生成
     // (音声のみの場合はaudioタグでも良い)

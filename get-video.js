@@ -23,7 +23,7 @@ captureButton.addEventListener('click', async(event) => {
     document.body.removeChild(captureButton);
   } catch(error) {
     // メディアストリーム取得失敗時
-    // ※ブラウザによってエラーオブジェクトjの型が異なる
+    // ※ブラウザによってエラーオブジェクトの型が異なる
     console.log(error);
     alert('デバイスを利用できませんでした。');
   }

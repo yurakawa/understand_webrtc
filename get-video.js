@@ -5,8 +5,7 @@ captureButton.addEventListener('click', async(event) => {
       // 取得したいストリームの条件を指定する
       {
         video: {
-          aspectRatio: {exact: 1.7777777778} // アスペクト比 16:9
-          //aspectRatio: {exact: 1.3333333333} // アスペクト比 4.3
+          facingMode: {exact: 'environment'} // アウトカメラ
         }
       }
     );

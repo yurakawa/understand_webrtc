@@ -4,6 +4,7 @@ captureButton.addEventListener('click', async(event) => {
     let mediaStream = await navigator.mediaDevices.getUserMedia(
       {
         audio: {
+          channelCount: {exact: 2}, // 2ch = ステレオ入力に限定
           echoCancellation: false
         }
       }

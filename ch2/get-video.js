@@ -2,10 +2,9 @@ let captureButton = document.getElementById('capture');
 captureButton.addEventListener('click', async(event) => {
   try {
     let mediaStream = await navigator.mediaDevices.getUserMedia(
-      // 取得したいストリームの条件を指定する
       {
-        video: {
-          facingMode: {exact: 'environment'} // アウトカメラ
+        audio: {
+          echoCancellation: false
         }
       }
     );

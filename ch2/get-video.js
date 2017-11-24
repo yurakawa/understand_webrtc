@@ -1,14 +1,28 @@
 let captureButton = document.getElementById('capture');
 captureButton.addEventListener('click', async(event) => {
   try {
-    let mediaStream = await navigator.mediaDevices.getUserMedia(
-      {
-        audio: {
-          channelCount: {exact: 2}, // 2ch = ステレオ入力に限定
-          echoCancellation: false
-        }
-      }
-    );
+
+    // 利用可能なデバイスの一覧を取得
+    // let mediadevices = await navigator.mediaDevices.enumerateDevices();
+    // console.log(mediadevices);
+
+    let constraints = {
+      video: {
+        width: {min: 640}, height: {min: 480},
+      },
+      audio: {
+        echoCancellation: true
+      },
+    };
+    // ローカルストレージにデバイス選択設定が保存されていたらそれを使う
+    if (localStorage.getItem('videoDeviceId')){
+      constraints['video']['deviceId'] = localStorage.getItem('videoDeviceId');
+    }
+    if (localStorage.getItem('audioDeviceId')) {
+      constraints['audio']['deviceId'] = localStorage.getItem('audioDeviceId');
+    }
+    let mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
+
     // メディアストリームを再生するvideoタグを生成
     // (音声のみの場合はaudioタグでも良い)
     let mediaElement = document.createElement('video');

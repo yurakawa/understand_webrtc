@@ -8,7 +8,16 @@ captureButton.addEventListener('click', async(event) => {
 
     let constraints = {
       video: {
-        width: {min: 640}, height: {min: 480},
+        // 最低条件 640 以上 x 480 以上
+        width: {min: 640},
+        height: {min: 480},
+        advanced: [                    // advancedの中では数値をそのまま使用するとideal(理想値)ではなくexact(完全一致)と同意になる
+          {width: 1920, height: 1080}, // 第1条件 1,920 x 1,080
+          {width: 1280, height: 720}, // 第2条件 1,280 x 720
+          {frameRate: 60.0}, // 第3条件 フレームレート 60.0fps
+          {frameRate: 30.0}, // 第4条件 フレームレート 30.0fps
+          {frameRate: 15.0}, // 第5条件 フレームレート 15.0fps
+        ],
       },
       audio: {
         echoCancellation: true

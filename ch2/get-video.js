@@ -32,6 +32,8 @@ captureButton.addEventListener('click', async(event) => {
     }
     let mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
 
+    console.log(mediaStream.getTracks());
+
     // メディアストリームを再生するvideoタグを生成
     // (音声のみの場合はaudioタグでも良い)
     let mediaElement = document.createElement('video');
